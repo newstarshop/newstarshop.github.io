@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Star</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Archivo:wght@300;400;500;600;700&family=Tajawal:wght@200;300;400;500;700&family=Almarai:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+
+    <div class="header-left">
+      <button class="icon-btn menu-trigger" id="menuTrigger" aria-label="Open menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <nav class="main-nav">
+        <a href="#shop" data-en="New" data-ar="جديد">New</a>
+        <a href="#shop" data-en="Collection" data-ar="التشكيلة">Collection</a>
+        <a href="#story" data-en="The Atelier" data-ar="الأتيليه">The Atelier</a>
+      </nav>
+    </div>
+
+    <a href="#" class="logo header-center">
+<span class="logo-main" data-en="NEW STAR" data-ar="نيو ستار">NEW STAR</span>
+      <span class="logo-sub" data-en="ATELIER №7" data-ar="أتيليه ٧">ATELIER №7</span>
+    </a>
+
+    <div class="header-right">
+      <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
+        <span class="lang-track">
+          <span class="lang-pill" id="langPill"></span>
+          <span class="lang-opt" data-val="en">EN</span>
+          <span class="lang-opt" data-val="ar">ع</span>
+        </span>
+      </button>
+      <button class="icon-btn search-trigger" id="searchTrigger" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-3.2-3.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <button class="icon-btn cart-trigger" id="cartTrigger" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 8Z" stroke="currentColor" stroke-width="1.5"/><path d="M9 8a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay-inner">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search the collection…" data-ph-en="Search the collection…" data-ph-ar="ابحث في التشكيلة…">
+      <button class="icon-btn search-close" id="searchClose" aria-label="Close search">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MOBILE NAV DRAWER ============ -->
+<div class="overlay" id="navOverlay"></div>
+<aside class="nav-drawer" id="navDrawer">
+  <div class="drawer-head">
+    <h3 data-en="Menu" data-ar="القائمة">Menu</h3>
+    <button class="icon-btn" id="navClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="nav-drawer-links">
+    <a href="#" data-en="Home" data-ar="الرئيسية" data-navlink>Home</a>
+    <a href="#shop" data-en="Collection" data-ar="التشكيلة" data-navlink>Collection</a>
+    <a href="#story" data-en="The Atelier" data-ar="الأتيليه" data-navlink>The Atelier</a>
+    <a href="#" data-en="Journal" data-ar="اليوميات" data-navlink>Journal</a>
+    <a href="#" data-en="Contact" data-ar="تواصل معنا" data-navlink>Contact</a>
+  </nav>
+
+  <div class="nav-drawer-socials">
+    <a href="https://wa.me/201550508384" target="_blank" aria-label="رقم الواتس">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+    <a href="https://chat.whatsapp.com/JeU0j0B6uIO82zrtCG7RGN" target="_blank" aria-label="جروب الواتس">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+    <a href="https://www.facebook.com/share/g/1Tt8QkSpxw/" target="_blank" aria-label="جروب الفيس">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+    </a>
+  </div>
+  <div class="nav-drawer-lang">
+    <span data-en="Language" data-ar="اللغة">Language</span>
+    <button class="lang-toggle" id="langToggleMobile" aria-label="Toggle language">
+      <span class="lang-track">
+        <span class="lang-pill"></span>
+        <span class="lang-opt" data-val="en">EN</span>
+        <span class="lang-opt" data-val="ar">ع</span>
+      </span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-blob"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-en="Fall / Winter Edit" data-ar="إصدار الخريف والشتاء">Fall / Winter Edit</p>
+
+    <h1 class="hero-title">
+      <span class="hero-line hero-line-1" data-en="Quiet" data-ar="أناقة">Quiet</span>
+      <span class="hero-line hero-line-2" data-en="elegance," data-ar="هادئة،">elegance,</span>
+      <span class="hero-line hero-line-3" data-en="carefully curated" data-ar="ومنتقاة بعناية">carefully curated</span>
+    </h1>
+
+    <p class="hero-desc" data-en="An exclusive selection of premium pieces, chosen for their exceptional quality and timeless design." data-ar="تشكيلة حصرية من أرقى القطع، اخترناها لك بعناية لتناسب ذوقك الرفيع وتمنحك الجودة التي تستحقها.">An exclusive selection of premium pieces, chosen for their exceptional quality and timeless design.</p>
+
+    <div class="hero-cta-row">
+      <button class="magnetic-btn" id="heroCta">
+        <span class="magnetic-btn-fill"></span>
+        <span class="magnetic-btn-text" data-en="Explore the Edit" data-ar="استكشف التشكيلة">Explore the Edit</span>
+        <span class="magnetic-btn-arrow">→</span>
+      </button>
+
+      <div class="hero-meta">
+        <span class="hero-meta-num">01</span>
+        <span class="hero-meta-label" data-en="Scroll to discover" data-ar="مرّر للاكتشاف">Scroll to discover</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-marquee">
+    <div class="marquee-track">
+      <span data-en="Premium Selection" data-ar="تشكيلة منتقاة">Premium Selection</span><span>·</span>
+      <span data-en="Exceptional Quality" data-ar="جودة استثنائية">Exceptional Quality</span><span>·</span>
+      <span data-en="Timeless Style" data-ar="أناقة خالدة">Timeless Style</span><span>·</span>
+      <span data-en="NEW STAR" data-ar="نيو ستار">NEW STAR</span><span>·</span>
+      <span data-en="Premium Selection" data-ar="تشكيلة منتقاة">Premium Selection</span><span>·</span>
+      <span data-en="Exceptional Quality" data-ar="جودة استثنائية">Exceptional Quality</span><span>·</span>
+      <span data-en="Timeless Style" data-ar="أناقة خالدة">Timeless Style</span><span>·</span>
+      <span data-en="NEW STAR" data-ar="نيو ستار">NEW STAR</span><span>·</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHOP SECTION ============ -->
+<section class="shop-section" id="shop">
+  <div class="shop-head">
+    <div>
+      <span class="shop-eyebrow" data-en="The Collection" data-ar="التشكيلة">The Collection</span>
+<h2 class="shop-title" data-en="Exclusive selections, updated regularly" data-ar="تشكيلة مميزة، تتجدد دائماً">Exclusive selections, updated regularly</h2>    </div>
+    <div class="shop-head-right">
+      <button class="filter-pill" id="filterTrigger">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span data-en="Filter &amp; Sort" data-ar="فلترة وترتيب">Filter & Sort</span>
+      </button>
+      <span class="result-count" id="resultCount"></span>
+    </div>
+  </div>
+
+  <div class="product-grid" id="productGrid"></div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="story-section" id="story">
+  <div class="story-inner">
+    <div class="story-num">02</div>
+    <h2 class="story-title" data-en="A Collection Curated with Purpose" data-ar="نختار لك الأفضل، بعناية فائقة">A Collection Curated with Purpose</h2>
+    <p class="story-text" data-en="We search to bring you the finest pieces. Every item in our collection is selected for its superior craftsmanship, premium materials, and enduring style, ensuring you always look your best." data-ar="نبحث دائماً عن الجودة الاستثنائية لنوفر لك أرقى القطع. كل منتج في تشكيلتنا تم اختياره بناءً على دقة التفاصيل، جودة الخامات، والأناقة التي تدوم، لنضمن لك مظهراً مميزاً دائماً.">We search to bring you the finest pieces. Every item in our collection is selected for its superior craftsmanship, premium materials, and enduring style, ensuring you always look your best.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    
+    <!-- العمود الأول: اللوجو -->
+    <div class="footer-col footer-brand">
+      <span class="logo-main">NEW STAR</span>
+      <p data-en="NEW STAR. A carefully curated selection of premium wear." data-ar="نيو ستار. تشكيلة منتقاة من أرقى الملابس والماركات.">NEW STAR. A carefully curated selection of premium wear.</p>
+    </div>
+
+    <!-- العمود التاني: المتجر -->
+    <div class="footer-col">
+      <h4 data-en="Shop" data-ar="المتجر">Shop</h4>
+      <a href="#shop" class="footer-cat-link" data-cat="all" data-en="New Arrivals" data-ar="وصل حديثًا">New Arrivals</a>
+      <a href="#shop" class="footer-cat-link" data-cat="jacket,outfit,tracksuit" data-en="Outerwear" data-ar="الملابس الخارجية">Outerwear</a>
+      <a href="#shop" class="footer-cat-link" data-cat="pants,shorts" data-en="Homewear" data-ar="ملابس المنزل">Homewear</a>
+    </div>
+
+    <!-- العمود التالت: التواصل -->
+    <div class="footer-col">
+      <h4 data-en="Connect" data-ar="تواصل معنا">Connect</h4>
+      
+      <a href="https://wa.me/201550508384" target="_blank" class="social-link">
+        <span class="social-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        </span>
+        <span data-en="WhatsApp Number" data-ar="رقم الواتس">WhatsApp Number</span>
+      </a>
+
+      <a href="https://chat.whatsapp.com/JeU0j0B6uIO82zrtCG7RGN" target="_blank" class="social-link">
+        <span class="social-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        </span>
+        <span data-en="WhatsApp Group" data-ar="جروب الواتس">WhatsApp Group</span>
+      </a>
+
+      <a href="https://www.facebook.com/share/g/1Tt8QkSpxw/" target="_blank" class="social-link">
+        <span class="social-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        </span>
+        <span data-en="Facebook Group" data-ar="جروب الفيس">Facebook Group</span>
+      </a>
+    </div>
+    
+  </div> <!-- دي القفلة اللي كانت ناقصة ومطيرة الفوتر -->
+  
+  <div class="footer-bottom">
+    <span>© 2026 Developed by Quantix</span>
+    <span data-en="Curated with care." data-ar="نختار لك الأفضل دائماً.">Curated with care.</span>
+  </div>
+</footer>
+
+<!-- ============ FILTER DRAWER ============ -->
+<div class="overlay" id="filterOverlay"></div>
+<aside class="filter-drawer" id="filterDrawer">
+  <div class="drawer-head">
+    <h3 data-en="Filter" data-ar="فلترة">Filter</h3>
+    <button class="icon-btn" id="filterClose" aria-label="Close filters">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="drawer-body">
+    <div class="filter-block">
+      <h4 data-en="Price Range" data-ar="نطاق السعر">Price Range</h4>
+      <div class="price-display">
+        <span id="priceMin">0 EGP</span><span class="price-sep">—</span><span id="priceMax">10000 EGP</span>
+      </div>
+      <div class="range-wrap">
+        <div class="range-track"></div>
+        <div class="range-fill" id="rangeFill"></div>
+        <input type="range" min="0" max="10000" value="0" id="rangeMin" class="range-input">
+        <input type="range" min="0" max="10000" value="10000" id="rangeMax" class="range-input">
+      </div>
+    </div>
+
+    <div class="filter-block">
+      <h4 data-en="Department" data-ar="القسم">Department</h4>
+      <div class="cat-group">
+        <label class="cat-check"><input type="checkbox" value="men" class="genderFilter"><span class="check-box"></span><span data-en="Men" data-ar="رجالي">Men</span></label>
+        <label class="cat-check"><input type="checkbox" value="women" class="genderFilter"><span class="check-box"></span><span data-en="Women" data-ar="حريمي">Women</span></label>
+        <label class="cat-check"><input type="checkbox" value="kids" class="genderFilter"><span class="check-box"></span><span data-en="Kids" data-ar="أطفالي">Kids</span></label>
+      </div>
+    </div>
+
+    <div class="filter-block">
+      <h4 data-en="Categories" data-ar="الفئات">Categories</h4>
+      <div class="cat-group">
+        <p class="cat-group-label" data-en="Clothing" data-ar="الملابس">Clothing</p>
+        <label class="cat-check"><input type="checkbox" value="tshirt,shirt" class="catFilter"><span class="check-box"></span><span data-en="Tops & Shirts" data-ar="تيشرتات وقمصان">Tops & Shirts</span></label>
+        <label class="cat-check"><input type="checkbox" value="pants,shorts" class="catFilter"><span class="check-box"></span><span data-en="Bottoms" data-ar="بناطيل وشورتات">Bottoms</span></label>
+        <label class="cat-check"><input type="checkbox" value="dress,skirt" class="catFilter"><span class="check-box"></span><span data-en="Dresses & Skirts" data-ar="فساتين وتنانير">Dresses & Skirts</span></label>
+        <label class="cat-check"><input type="checkbox" value="jacket,outfit,tracksuit" class="catFilter"><span class="check-box"></span><span data-en="Outerwear & Sets" data-ar="جواكيت وأطقم">Outerwear & Sets</span></label>
+      </div>
+      <div class="cat-group">
+        <p class="cat-group-label" data-en="Accessories" data-ar="إكسسوارات">Accessories</p>
+        <label class="cat-check"><input type="checkbox" value="shoes" class="catFilter"><span class="check-box"></span><span data-en="Footwear" data-ar="أحذية">Footwear</span></label>
+        <label class="cat-check"><input type="checkbox" value="bag,accessories" class="catFilter"><span class="check-box"></span><span data-en="Bags & Goods" data-ar="حقائب ومستلزمات">Bags & Goods</span></label>
+      </div>
+    </div>
+
+    <div class="filter-block">
+      <h4 data-en="Sort By" data-ar="الترتيب حسب">Sort By</h4>
+      <div class="sort-options">
+        <label class="radio-opt"><input type="radio" name="sort" value="featured" checked><span class="radio-dot"></span><span data-en="Featured" data-ar="المختارة">Featured</span></label>
+        <label class="radio-opt"><input type="radio" name="sort" value="price-asc"><span class="radio-dot"></span><span data-en="Price: Low to High" data-ar="السعر: من الأقل للأعلى">Price: Low to High</span></label>
+        <label class="radio-opt"><input type="radio" name="sort" value="price-desc"><span class="radio-dot"></span><span data-en="Price: High to Low" data-ar="السعر: من الأعلى للأقل">Price: High to Low</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="drawer-foot">
+    <button class="btn-ghost" id="clearFilters" data-en="Clear All" data-ar="إعادة تعيين">Clear All</button>
+    <button class="btn-solid" id="applyFilters" data-en="Apply" data-ar="تطبيق">Apply</button>
+  </div>
+</aside>
+
+<!-- ============ QUICK VIEW MODAL ============ -->
+<div class="overlay" id="qvOverlay"></div>
+<div class="quickview" id="quickview">
+  <button class="icon-btn qv-close" id="qvClose" aria-label="Close quick view">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+
+  <div class="qv-gallery">
+    <div class="qv-main-img">
+      <img id="qvMainImg" src="" alt="">
+      <div class="qv-tag" id="qvTag">New</div>
+      <button class="qv-arrow qv-arrow-prev" id="qvPrev" aria-label="Previous image">‹</button>
+      <button class="qv-arrow qv-arrow-next" id="qvNext" aria-label="Next image">›</button>
+    </div>
+    <div class="qv-thumbs" id="qvThumbs"></div>
+  </div>
+
+  <div class="qv-details">
+    <p class="qv-category" id="qvCategory">Outerwear</p>
+    <h2 class="qv-name" id="qvName">Product Name</h2>
+    <div class="qv-price-row">
+      <span class="qv-price" id="qvPrice">120 EGP</span>
+      <span class="qv-original" id="qvOriginal"></span>
+    </div>
+    <p class="qv-desc" id="qvDesc"></p>
+
+    <div class="qv-option-block">
+      <p class="qv-option-label">
+        <span data-en="Color" data-ar="اللون">Color</span>: <span id="qvColorName"></span>
+      </p>
+      <div class="qv-swatches" id="qvColors"></div>
+    </div>
+
+    <div class="qv-option-block">
+      <p class="qv-option-label" data-en="Size" data-ar="المقاس">Size</p>
+      <div class="qv-sizes" id="qvSizes"></div>
+    </div>
+
+    <div class="qv-qty-row">
+      <p class="qv-option-label" data-en="Quantity" data-ar="الكمية">Quantity</p>
+      <div class="qty-stepper">
+        <button id="qtyMinus" aria-label="Decrease quantity">−</button>
+        <span id="qtyVal">1</span>
+        <button id="qtyPlus" aria-label="Increase quantity">+</button>
+      </div>
+    </div>
+
+    <button class="add-cart-btn" id="qvAddCart">
+      <span class="add-cart-text" data-en="Add to Bag" data-ar="أضف إلى الحقيبة">Add to Bag</span>
+      <span class="add-cart-price" id="qvAddCartPrice">120 EGP</span>
+    </button>
+
+    <div class="qv-meta-grid">
+      <div class="qv-meta-item">
+        <span class="qv-meta-icon">✓</span>
+        <span data-en="Premium quality materials" data-ar="خامات ممتازة وعالية الجودة">Premium quality materials</span>
+      </div>
+      <div class="qv-meta-item">
+        <span class="qv-meta-icon">⚡</span>
+        <span data-en="Fast & secure delivery" data-ar="توصيل سريع وآمن لجميع المحافظات">Fast & secure delivery</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <h3 data-en="Your Bag" data-ar="حقيبتك">Your Bag</h3>
+    <button class="icon-btn" id="cartClose" aria-label="Close cart">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-empty" id="cartEmpty">
+    <span class="cart-empty-icon">◯</span>
+    <p data-en="Your bag is empty" data-ar="حقيبتك فارغة">Your bag is empty</p>
+    <p class="cart-empty-sub" data-en="Pieces you add will appear here." data-ar="ستظهر القطع التي تختارها هنا.">Pieces you add will appear here.</p>
+  </div>
+
+  <div class="cart-foot" id="cartFoot">
+    <div class="cart-subtotal-row">
+      <span data-en="Subtotal" data-ar="الإجمالي الفرعي">Subtotal</span>
+      <span id="cartSubtotal">0 EGP</span>
+    </div>
+    <p class="cart-note" data-en="Shipping &amp; taxes calculated at checkout." data-ar="تُحتسب الشحن والضرائب عند إتمام الشراء.">Shipping & taxes calculated at checkout.</p>
+    <button class="btn-solid cart-checkout" data-en="Checkout" data-ar="إتمام الشراء">Checkout</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<div class="overlay" id="checkoutOverlay"></div>
+<div class="quickview checkout-modal" id="checkoutModal">
+  <button class="icon-btn qv-close" id="checkoutClose" aria-label="Close checkout">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+
+  <div class="checkout-content">
+    <h2 class="checkout-title" data-en="Secure Checkout" data-ar="إتمام الطلب">Secure Checkout</h2>
+    <p class="checkout-subtitle" data-en="Please enter your delivery details. Payment is cash on delivery." data-ar="يرجى إدخال تفاصيل التوصيل. الدفع عند الاستلام.">Please enter your delivery details. Payment is cash on delivery.</p>
+
+    <form id="checkoutForm" class="checkout-form">
+<div class="form-group">
+        <label data-en="Full Name *" data-ar="الاسم بالكامل *">Full Name *</label>
+        <input type="text" id="coName" required placeholder="Ahmed Mohamed Ali" data-ph-en="e.g. Ahmed Mohamed Ali" data-ph-ar="مثال: أحمد محمد علي">
+      </div>
+      
+      <div class="form-group">
+        <label data-en="Phone Number *" data-ar="رقم الموبايل *">Phone Number *</label>
+        <input type="tel" id="coPhone" required placeholder="01xxxxxxxxx" pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number" data-ph-en="11 digits" data-ph-ar="١١ رقم">
+      </div>
+
+      <div class="form-group">
+        <label data-en="Alternative Phone (Optional)" data-ar="رقم هاتف بديل (اختياري)">Alternative Phone (Optional)</label>
+        <input type="tel" id="coPhoneAlt" placeholder="01xxxxxxxxx" pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number" data-ph-en="11 digits" data-ph-ar="١١ رقم">
+      </div>
+
+      <div class="form-group">
+        <label data-en="City / Governorate *" data-ar="المحافظة / المدينة *">City / Governorate *</label>
+        <input type="text" id="coCity" required placeholder="Cairo" data-ph-en="e.g. Cairo" data-ph-ar="مثال: القاهرة">
+      </div>
+
+      <div class="form-group">
+        <label data-en="Detailed Address *" data-ar="العنوان بالتفصيل *">Detailed Address *</label>
+        <textarea id="coAddress" rows="3" required placeholder="Street, Building, Floor..." data-ph-en="Street, Building, Floor..." data-ph-ar="اسم الشارع، رقم العمارة، الدور..."></textarea>
+      </div>
+
+      <button type="submit" class="add-cart-btn btn-submit-order">
+        <span class="add-cart-text" data-en="Confirm Order" data-ar="تأكيد الطلب">Confirm Order</span>
+        <span class="add-cart-price" id="checkoutTotal"></span>
+      </button>
+    </form>
+    
+    <!-- شاشة النجاح (مخفية افتراضياً) -->
+    <div id="checkoutSuccess" class="checkout-success" style="display: none;">
+      <div class="success-icon">✓</div>
+      <h3 data-en="Order Placed Successfully!" data-ar="تم تسجيل طلبك بنجاح!">Order Placed Successfully!</h3>
+      <p data-en="Our team will contact you shortly to confirm your order and delivery details. Payment will be collected upon delivery." data-ar="سيقوم فريق خدمة العملاء بالتواصل معك قريباً لتأكيد الطلب وتفاصيل التوصيل. الدفع سيكون عند الاستلام.">Our team will contact you shortly to confirm your order and delivery details. Payment will be collected upon delivery.</p>
+      <div class="order-ref">
+        <span data-en="Order Reference:" data-ar="رقم الطلب المرجعي:">Order Reference:</span>
+        <strong id="successOrderId"></strong>
+      </div>
+      <button type="button" class="btn-solid" id="btnContinueShopping" data-en="Continue Shopping" data-ar="متابعة التسوق">Continue Shopping</button>
+    </div>
+
+  </div>
+</div>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
