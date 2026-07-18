@@ -260,7 +260,8 @@ button:focus-visible, a:focus-visible, input:focus-visible{
   .header-left{ gap: 10px; }
 }
 @media (max-width: 480px){
-  .lang-toggle{ display: none; }
+  /* الكود ده هيخفي زرار اللغة من الشريط العلوي بس عشان الزحمة، لكن هيسيبه شغال جوه القائمة الجانبية */
+  .header-right .lang-toggle { display: none; }
 }
 
 /* ===================================================================
