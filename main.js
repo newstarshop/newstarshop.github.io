@@ -155,6 +155,23 @@ document.getElementById('searchInput').addEventListener('input', e => {
     loadStoreProducts(0, false);
   }, 400);
 });
+// ===================================================================
+// إغلاق نافذة البحث عند الضغط على Enter والتوجه للنتائج
+// ===================================================================
+document.getElementById('searchInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault(); // لمنع أي سلوك افتراضي للمتصفح
+    
+    // 1. إغلاق نافذة البحث (Overlay)
+    document.getElementById('searchOverlay').classList.remove('open');
+    
+    // 2. إخفاء الكيبورد في الموبايل (عشان ميغطيش على المنتجات)
+    document.getElementById('searchInput').blur();
+    
+    // 3. النزول بسلاسة لسكشن المنتجات لعرض النتائج
+    document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+  }
+});
 
 
 const navDrawer = document.getElementById('navDrawer');
