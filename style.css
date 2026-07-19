@@ -1014,18 +1014,20 @@ background: var(--graphite);
   transform: translateY(3px); 
 }
 
-
 /* ===================================================================
-   MOBILE LANGUAGE BUTTON FIX - V2 (FINAL)
+   MOBILE LANGUAGE BUTTON FIX - V3 (PERFECT ALIGNMENT)
 =================================================================== */
 @media (max-width: 480px) {
-  /* نظهر الزرار ونمنعه من الاختفاء */
+  /* 1. إعطاء زر اللغة نفس أبعاد الأيقونات (38px) لتوحيد المحاذاة */
   .lang-toggle, 
   .nav-drawer-lang .lang-toggle {
     display: inline-flex !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   
-  /* السطر ده اللي كان ناقص: تحويل الـ Grid لـ Flex عشان العرض ميبقاش صفر */
   .lang-track, 
   .nav-drawer-lang .lang-track {
     display: flex !important; 
@@ -1038,13 +1040,11 @@ background: var(--graphite);
     box-shadow: none !important;
   }
   
-  /* إخفاء الكبسولة المتحركة */
   .lang-pill, 
   .nav-drawer-lang .lang-pill {
     display: none !important;
   }
   
-  /* تظبيط حجم الحروف وشكلها */
   .lang-opt, 
   .nav-drawer-lang .lang-opt {
     font-size: 1.2rem !important;
@@ -1053,13 +1053,20 @@ background: var(--graphite);
     line-height: 1 !important;
   }
 
-  /* لو الموقع إنجليزي -> اخفي الـ EN واظهر الـ ع */
+  /* 2. التعديل البصري الدقيق (Optical Nudge) لرفع الحروف */
+  /* لو الموقع إنجليزي -> اخفي الـ EN واظهر الـ ع مع رفع الحرف العربي 3 بيكسل للأعلى */
   html[data-lang="en"] .lang-opt[data-val="en"] { display: none !important; }
-  html[data-lang="en"] .lang-opt[data-val="ar"] { display: block !important; }
+  html[data-lang="en"] .lang-opt[data-val="ar"] { 
+    display: block !important; 
+    transform: translateY(-3px) !important; /* 👈 هذا السطر يضبط حرف الـ ع */
+  }
 
-  /* لو الموقع عربي -> اخفي الـ ع واظهر الـ EN */
+  /* لو الموقع عربي -> اخفي الـ ع واظهر الـ EN مع رفع الإنجليزي 1 بيكسل للأعلى */
   html[data-lang="ar"] .lang-opt[data-val="ar"] { display: none !important; }
-  html[data-lang="ar"] .lang-opt[data-val="en"] { display: block !important; }
+  html[data-lang="ar"] .lang-opt[data-val="en"] { 
+    display: block !important; 
+    transform: translateY(-1px) !important; /* 👈 هذا السطر يضبط الـ EN */
+  }
 }
 
 /* ===================================================================
