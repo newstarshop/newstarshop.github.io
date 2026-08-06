@@ -155,23 +155,6 @@ document.getElementById('searchInput').addEventListener('input', e => {
     loadStoreProducts(0, false);
   }, 400);
 });
-// ===================================================================
-// إغلاق نافذة البحث عند الضغط على Enter والتوجه للنتائج
-// ===================================================================
-document.getElementById('searchInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    e.preventDefault(); // لمنع أي سلوك افتراضي للمتصفح
-    
-    // 1. إغلاق نافذة البحث (Overlay)
-    document.getElementById('searchOverlay').classList.remove('open');
-    
-    // 2. إخفاء الكيبورد في الموبايل (عشان ميغطيش على المنتجات)
-    document.getElementById('searchInput').blur();
-    
-    // 3. النزول بسلاسة لسكشن المنتجات لعرض النتائج
-    document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
-  }
-});
 
 
 const navDrawer = document.getElementById('navDrawer');
@@ -694,9 +677,22 @@ function formatSupabaseProducts(dbProducts) {
     let totalStock = 0;
 
     activeVariants.forEach(v => {
-      // 🔥 التعديل هنا: استخدام v.color_en لو موجود، ولو مش موجود نستخدم الأساسي
-      if (v.color) colorsMap.set(v.color, { name: { en: v.color_en || v.color, ar: v.color }, hex: v.color_hex || '#1a1a1a' });
-      if (v.size) sizesSet.add(v.size);
+      // 1. معالجة القيم الفارغة (المنتجات بدون لون أو مقاس محدد)
+      const safeColorAr = v.color || 'أساسي';
+      const safeColorEn = v.color_en || v.color || 'Standard';
+      const safeHex = v.color_hex || '#e2e8f0'; // لون رمادي فاتح محايد بدل الأسود
+      const safeSize = v.size || 'One Size';
+
+      // 2. تحديث المتغير نفسه عشان لما السيستم يبحث عنه أثناء الإضافة للسلة يلاقيه
+      v.color = safeColorAr;
+      v.color_en = safeColorEn;
+      v.color_hex = safeHex;
+      v.size = safeSize;
+
+      // 3. إضافتهم للقوائم
+      colorsMap.set(safeColorAr, { name: { en: safeColorEn, ar: safeColorAr }, hex: safeHex });
+      sizesSet.add(safeSize);
+
       if (v.selling_price < minPrice) minPrice = v.selling_price;
       totalStock += v.inventory?.reduce((sum, inv) => sum + (inv.quantity || 0), 0) || 0;
     });
@@ -728,12 +724,11 @@ function formatSupabaseProducts(dbProducts) {
       },
       price: minPrice === Infinity ? 0 : minPrice,
       original: null,
-      colors: colorsMap.size > 0 ? Array.from(colorsMap.values()) : [{ name: { en:'Standard', ar:'أساسي' }, hex:'#1a1a1a' }],
+      colors: colorsMap.size > 0 ? Array.from(colorsMap.values()) : [{ name: { en:'Standard', ar:'أساسي' }, hex:'#e2e8f0' }],
       sizes: sizesSet.size > 0 ? Array.from(sizesSet) : ['One Size'],
       images: images,
       outOfStock: totalStock <= 0,
       
-      // السطر ده هو اللي اتعدل عشان يقرأ من الحسبة اللي فوق
       tag: totalStock <= 0 ? null : (isNew ? { en: 'New', ar: 'جديد' } : null),
       
       variants: activeVariants
