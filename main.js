@@ -51,7 +51,7 @@ function saveWishlist(list){
 }
 
 const state = new Proxy({
-  lang: 'en',
+  lang: 'ar',
   cart: [],
   filters: { cats: [], genders: [], priceMin: 0, priceMax: 10000, sort: 'featured' },
   activeProduct: null,
@@ -823,6 +823,7 @@ async function loadStoreProducts(page = 0, append = false) {
 
 
 /* ============ تشغيل الموقع ============ */
+applyLanguage('ar'); 
 loadStoreProducts();
 /* ===================================================================
    CHECKOUT LOGIC (STEP 1: UI Toggle)
