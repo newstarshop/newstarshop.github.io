@@ -4,11 +4,11 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
    1. إعدادات قاعدة البيانات (Supabase)
    حط الرابط والـ Key بتوع مشروعك هنا (نفس اللي في الكاشير)
 =================================================================== */
-//const SUPABASE_URL = 'https://pdukovqsxmbsdflhrwsz.supabase.co';
-//const SUPABASE_ANON_KEY = 'sb_publishable_Al4sIi3PI3X9rdjFLTxZWA_P7Blpd85';
+const SUPABASE_URL = 'https://pdukovqsxmbsdflhrwsz.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_Al4sIi3PI3X9rdjFLTxZWA_P7Blpd85';
 
-const SUPABASE_URL     = 'http://127.0.0.1:54321';
-const SUPABASE_ANON_KEY = 'sb_publishable_ACJWlzQH1ZjBrEguHvfOxg_3BJgxAaH';
+//const SUPABASE_URL     = 'http://127.0.0.1:54321';
+//const SUPABASE_ANON_KEY = 'sb_publishable_ACJWlzQH1ZjBrEguHvfOxg_3BJgxAaH';
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
