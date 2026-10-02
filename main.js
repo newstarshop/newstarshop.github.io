@@ -1259,3 +1259,54 @@ document.querySelectorAll('.footer-cat-link').forEach(link => {
     loadStoreProducts(0, false);
   });
 });
+
+// ==========================================
+// كود فحص الداتا بيز الخاص بمشكلة الإسدال
+// ==========================================
+setTimeout(async () => {
+  console.log("%c--- 🔍 جاري فحص الداتا بيز لمنتجات الإسدال ---", "color: #007bff; font-size: 16px; font-weight: bold;");
+  
+  try {
+    // هنجيب كل المنتجات اللي الـ category بتاعها بيحتوي على كلمة isdal حتى لو فيه مسافات
+    const { data, error } = await supabase
+      .from('products')
+      .select(`
+        id, 
+        name_ar, 
+        category, 
+        is_active,
+        product_variants (
+          id, selling_price, is_active
+        )
+      `)
+      .ilike('category', '%isdal%');
+
+    if (error) {
+      console.error("خطأ أثناء الاتصال بقاعدة البيانات:", error);
+      return;
+    }
+
+    console.log(`%cلقينا ${data.length} منتج مسجلين كإسدال.`, "color: green; font-size: 14px;");
+
+    data.forEach((p, index) => {
+      console.log(`\n📦 المنتج رقم ${index + 1}: ${p.name_ar}`);
+      console.log(`- الفئة المسجلة (Category): "${p.category}"`);
+      console.log(`- المنتج مفعل (is_active): ${p.is_active}`);
+      console.log(`- عدد المتغيرات (Variants): ${p.product_variants.length}`);
+
+      if (p.product_variants.length === 0) {
+         console.log("%c⚠️ تحذير: المنتج ده ملوش أي ألوان/مقاسات! عشان كده الكود الأساسي بتاعك بيتجاهله ومش بيعرضه.", "color: red;");
+      } else {
+         p.product_variants.forEach((v, i) => {
+            console.log(`  * المتغير ${i + 1}: مفعل = ${v.is_active} | السعر = ${v.selling_price}`);
+            if (v.selling_price <= 0 || v.selling_price === null) {
+                console.log("%c  ⚠️ تحذير: السعر صفر أو غير مسجل! الفلتر بتاعك بيستبعد المنتجات اللي سعرها مش أكبر من صفر.", "color: orange;");
+            }
+         });
+      }
+    });
+    console.log("%c-----------------------------------------", "color: #007bff;");
+  } catch (err) {
+    console.error("حدث خطأ غير متوقع:", err);
+  }
+}, 3000); // استنينا 3 ثواني عشان ندي فرصة لـ supabase إنه يحمل
