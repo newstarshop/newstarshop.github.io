@@ -686,7 +686,8 @@ function formatSupabaseProducts(dbProducts) {
     'shirt': 'قميص', 'skirt': 'تنورة', 'underwear': 'ملابس داخلية',
     'accessories': 'إكسسوارات', 'bag': 'حقائب', 'other': 'أخرى',
     'outfit': 'طقم خروج', 'tracksuit': 'ترنج رياضى', 'pajamas': 'بيجامة',
-    'hijab': 'طرح / حجاب', 'abaya': 'عباية'
+    'hijab': 'طرح / حجاب', 'abaya': 'عباية',
+     'isdal': 'إسدال' // <-- السطر الجديد اللي هيحل المشكلة
   };
   return dbProducts.map(p => {
     const activeVariants = p.product_variants?.filter(v => v.is_active) || [];
